@@ -1,0 +1,93 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.product._id ? 'Edit Product' : 'New Product'}}</h1>
+  </div>
+
+  <div class="col-md-12">
+    <form name="vm.form.productList" class="form-horizontal" ng-submit="vm.save(vm.form.productList.$valid)" novalidate>
+      <fieldset>
+
+        <!--Title-->
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="title">Title</label>
+              <input name="title" type="text" ng-model="vm.product.title" id="title" class="form-control" placeholder="Title" required>
+              <div ng-messages="vm.form.productForm.title.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Product title is required.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Materials-->
+        <form name="vm.form.productForm" class="form-horizontal" ng-submit="vm.addMaterial(vm.form.productmaterial.$valid)" novalidate>
+        <div class="row" align="left">
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group" show-errors>
+             <label class="control-label" for="material">Materials</label>
+              <input name="material" type="text" ng-model="vm.product.material" id="material" class="form-control" placeholder="Materials" required>
+              <div ng-messages="vm.form.productForm.material.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Product material is required.</p>
+              </div>
+            </div>
+            <button ng-click="vm.addMaterial()" class="addMaterial btn btn-primary">Add Material</button>
+
+            <br />
+            <br />
+            
+            <!--Comments-->
+            <div class="form-group" show-errors>
+              <label class="control-label" for="comments">Comments</label>
+              <textarea name="comments" type="text" rows="3" ng-model="vm.product.comments" id="comments" class="form-control" placeholder="Comments" required></textarea>
+              <div ng-messages="vm.form.productForm.comments.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Product comments is required.</p>
+              </div>
+            </div>
+
+            <!-- HEX CODE INPUT -->
+            <div class="form-group">
+              <input type="text" minlength="7" maxlength="7" pattern="[#A-Fa-f0-9]{7}" class="" placeholder="Enter Hex value" ng-model="vm.product.color">
+              <div ng-messages="vm.form.productForm.color.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Proper hex code is required.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">{{vm.product._id ? 'Update' : 'Create'}}</button>
+            </div>
+            <div ng-show="vm.error" class="text-danger">
+              <strong ng-bind="vm.error"></strong>
+            </div>
+          </div>
+
+          <!--Material List-->
+          <div align="center">
+            <div class="col-xs-6 col-md-6">
+                <h3>Material List</h3>
+                <div class="card">
+
+                  <ul style="list-style: none;">
+                      <div class="pull-left">
+                        <label>
+                          <li class="list" style="text-align: left" ng-repeat="material in vm.product.materials">
+                            <input type="checkbox" class="checkbox1" ng-click="functionItemChecked()" required> {{material.material}}
+                            <!-- <a class="btn btn-primary btn-xs" ng-click="vm.remove()">
+                              <i class="glyphicon glyphicon-trash"></i>
+                            </a> -->
+                          </li>
+                        </label>
+                      </div>
+                  </ul>
+
+                </div>
+            </div>
+          </div>
+
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+
+      </fieldset>
+    </form>
+</section>
