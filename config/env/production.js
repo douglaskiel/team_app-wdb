@@ -8,7 +8,7 @@ module.exports = {
   },
   port: process.env.PORT || 8443,
   db: {
-    uri: 'mongodb://douglaskiel:00sGbp4trctir@ds145370.mlab.com:45370/thestorewdb',
+    uri: 'mongodb://douglas.kiel:E76lheGSfj6B@ds145370.mlab.com:45370/thestorewdb',
     options: {
       user: '',
       pass: ''
